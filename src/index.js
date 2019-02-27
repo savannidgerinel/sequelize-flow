@@ -1,28 +1,30 @@
 // @flow
 
 import Sequelize, { type Model } from "sequelize";
+import { type Empire } from "./empire";
 
 const sequelize = new Sequelize(
   "postgres://postgres:sequelize@localhost:5432/sqldemo"
 );
 
 const main = async () => {
-  const Empire: Class<Model<Empire>> = await require("./empire")(sequelize);
-  const empire: Empire = await Empire.create({
+  const EmpireModel: Class<Model<Empire>> = await require("./empire")(
+    sequelize
+  );
+  const empire: Model<Empire> = await EmpireModel.create({
     name: "Sildaran Republic",
     species: "Sildar",
     homeworld: "Sakatarola"
   });
 
-  const empires = await Empire.findAll();
+  const empires = await EmpireModel.findAll();
   console.log(empires);
 
   empires.map(empire => {
     console.log("[Empire]           ", empire.name);
-    console.log("[Founding Species] ", empire.name);
+    console.log("[Founding Species] ", empire.species);
     console.log("[Homeworld]        ", empire.homeworld);
   });
-  Empire.destroy({ truncate: true });
 };
 
 console.log("Starting demo");

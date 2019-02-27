@@ -1,0 +1,61 @@
+{
+  "name": "sequelize-flow",
+  "version": "1.0.0",
+  "description": "minimal demo for a bug between flow and sequelize",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "babel -d dist/ src/ && node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "flow:check": "flow status --quiet",
+    "flow:deps": "flow-typed install",
+    "lint": "eslint src/"
+  },
+  "author": "Savanni D'Gerinel",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "pg": "^7.8.1",
+    "sequelize": "^4.42.1",
+    "sequelize-cli": "^5.4.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
+      "@babel/flow"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "commonjs": true
+    },
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "plugins": [
+      "flowtype"
+    ],
+    "rules": {
+    "semi": [ "none" ]
+    }
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-flow": "^7.0.0",
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-flowtype": "^3.4.2",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "flow-bin": "^0.93.0",
+    "flow-typed": "^2.5.1"
+  }
+}
